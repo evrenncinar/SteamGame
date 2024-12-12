@@ -5,6 +5,7 @@ using Steamworks;
 using System;
 public class LobbyListItemScript : MonoBehaviour
 {
+    
     public string _playerName;
     public int _connectionID;
     public ulong _playerSteamID;
@@ -12,8 +13,24 @@ public class LobbyListItemScript : MonoBehaviour
 
     public TMP_Text _playerNameText;
     public RawImage _playerAvatarImage;
+    public TMP_Text _playerReadyText;
+    public bool _isReady;
 
     protected Callback<AvatarImageLoaded_t> ImageLoaded;
+
+    public void ChangeReadyState()
+    {
+        if(_isReady) // Ready
+        {
+            _playerReadyText.text = "Ready";
+            _playerReadyText.color = Color.green;
+        }
+        else // Not Ready
+        {
+            _playerReadyText.text = "UnReady";
+            _playerReadyText.color = Color.red;
+        }
+    }
 
     private void Start() 
     {
@@ -61,6 +78,7 @@ public class LobbyListItemScript : MonoBehaviour
     public void SetPlayerValues()
     {
         _playerNameText.text = _playerName;
+        ChangeReadyState();
         if(!_avatarReceived) {GetPlayerAvatar();}
     }
 }

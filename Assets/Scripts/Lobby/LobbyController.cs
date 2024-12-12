@@ -9,7 +9,7 @@ public class LobbyController : MonoBehaviour
 {
     public static LobbyController instance;
 
-    //UI Element
+    //UI Elements
     public TMP_Text _lobbyNameText;
 
     //Player Data

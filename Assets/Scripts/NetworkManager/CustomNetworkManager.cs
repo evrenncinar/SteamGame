@@ -20,4 +20,5 @@ public class CustomNetworkManager : NetworkManager
             NetworkServer.AddPlayerForConnection(conn,GamePlayerInstantiate.gameObject);
         }
     }
+
 }

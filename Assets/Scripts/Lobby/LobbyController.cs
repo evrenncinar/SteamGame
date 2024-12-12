@@ -67,6 +67,7 @@ public class LobbyController : MonoBehaviour
 
     public void CheckIfAllPlayersReady()
     {
+        
         bool AllReady = false;
 
         foreach(PlayerObjectController player in Manager.GamePlayers)
@@ -75,7 +76,7 @@ public class LobbyController : MonoBehaviour
             else { AllReady = false; break; }
         }
 
-        if(AllReady) 
+        if(AllReady && _localPlayerObjectController != null) 
         {
             if(_localPlayerObjectController._playerIDNumber == 1)
             {
@@ -108,8 +109,10 @@ public class LobbyController : MonoBehaviour
 
     public void FindLocalPlayer()
     {
+        
         _localPlayerObject = GameObject.Find("LocalGamePlayer");
         _localPlayerObjectController = _localPlayerObject.GetComponent<PlayerObjectController>();
+        Debug.Log(_localPlayerObjectController);
     }
 
     public void CreateHostPlayerItem()
@@ -174,6 +177,7 @@ public class LobbyController : MonoBehaviour
                 }   
             }
         }
+        
         CheckIfAllPlayersReady();
     }
 

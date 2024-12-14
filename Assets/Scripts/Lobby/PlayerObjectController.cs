@@ -40,6 +40,7 @@ public class PlayerObjectController : NetworkBehaviour
     [Command]
     private void CmdSetPlayerReady()
     {
+        Debug.Log("sdfsf");
         this.PlayerReadyUpdate(this._playerReady,!this._playerReady);
     }
 

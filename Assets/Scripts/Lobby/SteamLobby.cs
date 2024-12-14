@@ -3,6 +3,7 @@ using Steamworks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class SteamLobby : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class SteamLobby : MonoBehaviour
    private const string HostAddressKey = "HostAddress";
    private CustomNetworkManager manager;
 
-
    void Start()
    {
         if(!SteamManager.Initialized) { return; }
@@ -29,6 +29,12 @@ public class SteamLobby : MonoBehaviour
         lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEnter);
         
    }
+
+   public void JoinLobby(CSteamID _lobbyID)
+   {
+        SteamMatchmaking.JoinLobby(_lobbyID);
+   }
+   
 
    public void HostLobby()
    {
@@ -69,8 +75,7 @@ public class SteamLobby : MonoBehaviour
    {
        //Everyone
        CurrentLobbyID = callback.m_ulSteamIDLobby;
-    //    LobbyNameText.gameObject.SetActive(true);
-    //    LobbyNameText.text = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "Name");
+       Debug.Log(CurrentLobbyID);
 
        //Clients
        if (NetworkServer.active){ return; }

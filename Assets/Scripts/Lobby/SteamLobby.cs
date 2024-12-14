@@ -32,7 +32,14 @@ public class SteamLobby : MonoBehaviour
 
    public void JoinLobby(CSteamID _lobbyID)
    {
+    try
+    {
         SteamMatchmaking.JoinLobby(_lobbyID);
+    }
+    catch (System.Exception)
+    {
+        print("Böyle bir Lobby kodu yok");
+    }
    }
    
 

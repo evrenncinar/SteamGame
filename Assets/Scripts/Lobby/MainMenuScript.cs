@@ -14,7 +14,15 @@ public class MainMenuScript : MonoBehaviour
 
     public void JoinLobby()
     {
-        ulong _lobbyID = Convert.ToUInt64(_lobbyCode.text);
-        SteamLobby.instance.JoinLobby((CSteamID)_lobbyID);
+        try
+        {
+            CSteamID steamLobbyID = new CSteamID(ulong.Parse(_lobbyCode.text)); // Lobby ID'yi CSteamID'ye dönüştür
+            SteamLobby.instance.JoinLobby(steamLobbyID);
+        }
+        catch (System.Exception)
+        {
+            
+            print("Böyle bir Lobby kodu yok");
+        }
     }
 }
